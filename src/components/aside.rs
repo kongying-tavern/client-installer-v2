@@ -1,8 +1,13 @@
 use yew::prelude::*;
 use stylist::yew::styled_component;
 
+#[derive(Properties, Clone, PartialEq)]
+pub struct AsideComponentProps {
+    pub image: String,
+}
+
 #[styled_component(AsideComponent)]
-pub fn aside_component() -> Html {
+pub fn aside_component(props: &AsideComponentProps) -> Html {
     html! {
         <aside class={css!("
             position: absolute;
@@ -22,7 +27,7 @@ pub fn aside_component() -> Html {
                     filter: saturate(130%);
                     height: 100%;
                 ")}
-                src="/public/imgs/bg/aside.jpg" />
+                src={props.image.clone()} />
             <div
                 class={css!("
                     --rcolor-start: hsl(from var(--brand-color) h calc(s + 15) calc(l + 15));

@@ -5,7 +5,7 @@ use client_installer_ui::components::aside::AsideComponent;
 pub fn app() -> Html {
     html! {
         <main class="container">
-            <AsideComponent />
+            <AsideComponent image="/public/imgs/bg/aside.jpg" />
         </main>
     }
 }
