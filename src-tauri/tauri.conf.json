@@ -2,31 +2,18 @@
   "build": {
     "beforeDevCommand": "trunk serve",
     "beforeBuildCommand": "trunk build",
-    "devPath": "http://localhost:1420",
-    "distDir": "../dist",
-    "withGlobalTauri": true
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:1420"
   },
-  "package": {
-    "productName": "client-installer",
-    "version": "0.0.0"
+  "bundle": {
+    "active": false
   },
-  "tauri": {
-    "allowlist": {
-      "all": false,
-      "shell": {
-        "all": false,
-        "open": true
-      },
-      "window": {
-        "all": false,
-        "hide": true,
-        "show": true,
-        "minimize": true,
-        "unminimize": true,
-        "close": true,
-        "startDragging": true
-      }
-    },
+  "productName": "client-installer",
+  "version": "0.0.0",
+  "identifier": "site.yuanshen.installer",
+  "plugins": {},
+  "app": {
+    "withGlobalTauri": true,
     "macOSPrivateApi": true,
     "windows": [
       {
@@ -37,15 +24,11 @@
         "height": 407,
         "transparent": true,
         "decorations": false,
-        "fileDropEnabled": false
+        "dragDropEnabled": false
       }
     ],
     "security": {
       "csp": null
-    },
-    "bundle": {
-      "active": false,
-      "identifier": "site.yuanshen.installer"
     }
   }
 }
