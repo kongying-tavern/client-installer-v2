@@ -1,8 +1,9 @@
 :root {
+    --brand-color: #E84D25;
+
     overflow: hidden;
     font-size: 10px;
     user-select: none;
-    --brand-color: #ee623c;
 }
 
 body {

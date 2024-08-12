@@ -6,7 +6,7 @@ pub fn app() -> Html {
     html! {
         <main class="container">
             <AsideComponent
-                image="/public/imgs/bg/aside.jpg"
+                image="/public/imgs/aside.jpg"
                 height="100vh" />
         </main>
     }
