@@ -1,0 +1,14 @@
+{
+  "identifier": "window",
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "core:window:allow-minimize",
+    "core:window:allow-unminimize",
+    "core:window:allow-show",
+    "core:window:allow-hide",
+    "core:window:allow-close",
+    "core:window:allow-start-dragging"
+  ]
+}
