@@ -58,7 +58,12 @@ pub fn titlebar_component() -> Html {
                             --icon-color: #7B7B7B80;
                         }
                     "),
-                )}>
+                )}
+                onclick={move |_| {
+                    spawn_local(async move {
+                        invoke("close", JsValue::UNDEFINED).await;
+                    })
+                }}>
                 <span class="icon" />
             </div>
             <div
