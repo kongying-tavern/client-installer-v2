@@ -21,4 +21,8 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    background-image: url(/public/imgs/orbit.svg);
+    background-position: right top;
+    background-repeat: no-repeat;
+    background-size: 67.33vh 22.28vh;
 }
