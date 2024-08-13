@@ -1,4 +1,7 @@
+use crate::shared::app::invoke;
 use stylist::yew::styled_component;
+use wasm_bindgen::prelude::*;
+use wasm_bindgen_futures::spawn_local;
 use yew::prelude::*;
 
 #[styled_component(TitlebarComponent)]
@@ -74,7 +77,12 @@ pub fn titlebar_component() -> Html {
                             --icon-color: #7B7B7B80;
                         }
                     "),
-                )}>
+                )}
+                onclick={move |_| {
+                    spawn_local(async move {
+                        invoke("minimize", JsValue::UNDEFINED).await;
+                    })
+                }}>
                 <span class="icon" />
             </div>
         </div>
