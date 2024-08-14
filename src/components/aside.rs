@@ -3,6 +3,7 @@ use yew::prelude::*;
 
 #[derive(Properties, Clone, PartialEq)]
 pub struct AsideComponentProps {
+    pub color: String,
     pub image: String,
     pub height: String,
 }
@@ -11,7 +12,14 @@ pub struct AsideComponentProps {
 pub fn aside_component(props: &AsideComponentProps) -> Html {
     html! {
         <aside
-            style={format!("--aside-height: {height};", height = props.height)}
+            style={format!(
+                "
+                    --aside-color: {color};
+                    --aside-height: {height};
+                ",
+                color = props.color,
+                height = props.height,
+            )}
             class={css!("
                 --aside-box-height: 404;
                 --aside-outer-left: -441;
@@ -28,8 +36,8 @@ pub fn aside_component(props: &AsideComponentProps) -> Html {
                 --aside-inner-d: 755;
                 --aside-inner-d-rel: calc((var(--aside-inner-d) / var(--aside-box-height)) * 100cqh);
                 --aside-inner-width: calc(var(--aside-inner-left) + var(--aside-inner-d));
-                --aside-color-start: hsl(from var(--brand-color) h calc(s * 1.25) calc(l * 1.4));
-                --aside-color-end: var(--brand-color);
+                --aside-color-start: hsl(from var(--aside-color) h calc(s * 1.25) calc(l * 1.4));
+                --aside-color-end: var(--aside-color);
 
                 position: absolute;
                 top: 0;

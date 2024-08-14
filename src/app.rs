@@ -7,6 +7,7 @@ pub fn app() -> Html {
         <main class="container">
             <TitlebarComponent />
             <AsideComponent
+                color="var(--brand-color)"
                 image="/public/imgs/aside.jpg"
                 height="100vh" />
         </main>
