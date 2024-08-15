@@ -1,7 +1,7 @@
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
-#[derive(Properties, Clone, PartialEq)]
+#[derive(Debug, Properties, Clone, PartialEq)]
 pub struct AsideComponentProps {
     pub color: String,
     pub image: String,

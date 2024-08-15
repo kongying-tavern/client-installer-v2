@@ -14,6 +14,8 @@ console_error_panic_hook = "0.1.7"
 stylist = { version = "0.13.0", features = ["yew"] }
 gloo = "0.11.0"
 yew-router = "0.18.0"
+toml = "0.8.19"
+anyhow = "1.0.86"
 
 [workspace]
 members = ["src-tauri"]
