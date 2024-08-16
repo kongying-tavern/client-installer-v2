@@ -375,6 +375,7 @@ dependencies = [
  "toml 0.8.19",
  "wasm-bindgen",
  "wasm-bindgen-futures",
+ "windows-sys 0.59.0",
  "yew",
  "yew-router",
 ]
