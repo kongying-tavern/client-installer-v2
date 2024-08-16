@@ -1,5 +1,6 @@
 :root {
     --brand-color: #E84D25;
+    --separator-color: #DBDBDB;
     overflow: hidden;
     font-size: 10px;
     user-select: none;
