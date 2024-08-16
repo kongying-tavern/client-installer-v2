@@ -1,6 +1,6 @@
+use super::raw::RawComponent;
 use stylist::yew::styled_component;
 use yew::prelude::*;
-use yew::virtual_dom::VNode;
 
 #[derive(Debug, Properties, Clone, PartialEq)]
 pub struct LogoComponentProps {
@@ -65,7 +65,7 @@ pub fn logo_component(props: &LogoComponentProps) -> Html {
                     mask-repeat: no-repeat;
                 }
             ")}>
-                {VNode::from_html_unchecked(AttrValue::from(props.svg.clone()))}
+                <RawComponent html={props.svg.clone()} />
                 <div class="image" />
             </div>
         </div>
