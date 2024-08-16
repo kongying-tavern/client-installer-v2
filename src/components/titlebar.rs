@@ -15,14 +15,14 @@ pub fn titlebar_component() -> Html {
             border-radius: .4rem;
             justify-content: center;
             align-items: center;
-            background-color: var(--button-color);
+            background-color: var(--c-titlebar-button-color);
 
             .icon {
                 display: block;
                 width: 1.4rem;
                 aspect-ratio: 1;
-                background-color: var(--icon-color);
-                mask-image: var(--icon-image);
+                background-color: var(--c-titlebar-icon-color);
+                mask-image: var(--c-titlebar-icon-image);
                 mask-position: center;
                 mask-size: contain;
                 mask-repeat: no-repeat;
@@ -46,16 +46,16 @@ pub fn titlebar_component() -> Html {
                 class={classes!(
                     css_button.clone(),
                     css!("
-                        --icon-image: url(/public/imgs/close.svg);
-                        --button-color: transparent;
-                        --icon-color: #7B7B7B;
+                        --c-titlebar-icon-image: url(/public/imgs/close.svg);
+                        --c-titlebar-button-color: transparent;
+                        --c-titlebar-icon-color: #7B7B7B;
                         &:hover {
-                            --button-color: #D15C5C;
-                            --icon-color: #FFFFFF;
+                            --c-titlebar-button-color: #D15C5C;
+                            --c-titlebar-icon-color: #FFFFFF;
                         }
                         &:active {
-                            --button-color: transparent;
-                            --icon-color: #7B7B7B80;
+                            --c-titlebar-button-color: transparent;
+                            --c-titlebar-icon-color: #7B7B7B80;
                         }
                     "),
                 )}
@@ -70,16 +70,16 @@ pub fn titlebar_component() -> Html {
                 class={classes!(
                     css_button.clone(),
                     css!("
-                        --icon-image: url(/public/imgs/minimize.svg);
-                        --button-color: transparent;
-                        --icon-color: #7B7B7B;
+                        --c-titlebar-icon-image: url(/public/imgs/minimize.svg);
+                        --c-titlebar-button-color: transparent;
+                        --c-titlebar-icon-color: #7B7B7B;
                         &:hover {
-                            --button-color: #0000003D;
-                            --icon-color: #7B7B7B;
+                            --c-titlebar-button-color: #0000003D;
+                            --c-titlebar-icon-color: #7B7B7B;
                         }
                         &:active {
-                            --button-color: transparent;
-                            --icon-color: #7B7B7B80;
+                            --c-titlebar-button-color: transparent;
+                            --c-titlebar-icon-color: #7B7B7B80;
                         }
                     "),
                 )}
