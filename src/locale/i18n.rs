@@ -11,7 +11,7 @@ pub mod i18n_item {
 
     #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
     pub struct Header {
-        pub org_name: String,
+        pub org_logo: String,
     }
 }
 
