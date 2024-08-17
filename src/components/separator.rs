@@ -4,10 +4,10 @@ use yew::prelude::*;
 #[derive(Debug, Properties, Clone, PartialEq)]
 pub struct SeparatorComponentProps {
     pub color: String,
-    #[prop_or_default]
-    pub width: Option<String>,
-    #[prop_or_default]
-    pub height: Option<String>,
+    #[prop_or("1.6rem".to_string())]
+    pub width: String,
+    #[prop_or(".2rem".to_string())]
+    pub height: String,
 }
 
 #[styled_component(SeparatorComponent)]
@@ -21,8 +21,8 @@ pub fn separator_component(props: &SeparatorComponentProps) -> Html {
                     --c-separator-height: {height};
                 ",
                 color = props.color,
-                width = props.width.clone().unwrap_or("1.6rem".to_string()),
-                height = props.height.clone().unwrap_or(".2rem".to_string()),
+                width = props.width,
+                height = props.height,
             )}
             class={css!("
                 width: var(--c-separator-width);
