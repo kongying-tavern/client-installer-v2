@@ -12,7 +12,7 @@ pub fn app() -> Html {
                 <TitlebarComponent />
                 <AsideComponent
                     color="var(--brand-color)"
-                    image="/public/imgs/aside.jpg"
+                    image="/public/imgs/aside.webp"
                     height="100vh" />
                 <RouterView />
             </main>
