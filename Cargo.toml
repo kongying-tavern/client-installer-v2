@@ -22,3 +22,10 @@ windows-sys = { version = "0.59.0", features = ["Win32_Globalization"] }
 
 [workspace]
 members = ["src-tauri"]
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "z"
+strip = true
