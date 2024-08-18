@@ -20,11 +20,9 @@ fn switch(routes: Route) -> Html {
 pub fn router_view() -> Html {
     html! {
         <div class={css!("
-            display: flex;
-            flex-direction: column;
             position: absolute;
             inset: 0;
-            left: 79.95vh;
+            left: 66vh;
             z-index: 10;
         ")}>
             <BrowserRouter>
