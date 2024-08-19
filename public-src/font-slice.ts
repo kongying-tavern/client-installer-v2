@@ -9,7 +9,7 @@ const CURFILE = URL.fileURLToPath(import.meta.url);
 const __dirname = Path.resolve(CURFILE, '../../');
 
 const STATIC_CHAR_LIST: string[] = [
-    '01234567890.%',
+    '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|} ',
 ];
 
 const getGlob = (pattern: string, cwd: string = __dirname): string[] => {
