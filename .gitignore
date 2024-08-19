@@ -3,8 +3,16 @@
 
 *.log*
 
+# Node.js
 node_modules/
-
+/.ts-build/
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+
+# Compressed fonts
+/public/**/*-compressed.ttf
+/public/**/*-compressed.otf
+/public/**/*-compressed.eot
+/public/**/*-compressed.woff
+/public/**/*-compressed.woff2

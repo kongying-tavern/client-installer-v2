@@ -1,7 +1,7 @@
 {
   "build": {
-    "beforeDevCommand": "trunk serve",
-    "beforeBuildCommand": "trunk build",
+    "beforeDevCommand": "pnpm run font-slice && trunk serve",
+    "beforeBuildCommand": "pnpm run font-slice && trunk build",
     "frontendDist": "../dist",
     "devUrl": "http://localhost:1420"
   },
