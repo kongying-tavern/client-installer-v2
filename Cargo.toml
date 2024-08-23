@@ -16,6 +16,7 @@ gloo = "0.11.0"
 yew-router = "0.18.0"
 toml = "0.8.19"
 anyhow = "1.0.86"
+serde_json = "1.0.125"
 
 [target.'cfg(windows)'.dependencies]
 windows-sys = { version = "0.59.0", features = ["Win32_Globalization"] }
