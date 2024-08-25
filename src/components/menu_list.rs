@@ -1,7 +1,6 @@
 use super::menu_list_item::MenuListItemComponent;
 use super::menu_list_item_context::MenuListItemProvider;
 use stylist::yew::styled_component;
-use stylist::StyleSource;
 use yew::prelude::*;
 
 type ItemType = serde_json::Value;
@@ -25,8 +24,8 @@ where
     pub bg_active_color: String,
     #[prop_or_default]
     pub style: String,
-    #[prop_or(None)]
-    pub class: Option<StyleSource>,
+    #[prop_or_default]
+    pub class: AttrValue,
     #[prop_or_default]
     pub list: Vec<T>,
     #[prop_or_default]
