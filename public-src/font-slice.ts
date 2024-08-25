@@ -48,7 +48,7 @@ interface FontTrimConfig {
 
 (async function () {
     // Build font trim config
-    let translationPaths = getGlob('./src/locale/translations/**/*.toml');
+    let translationPaths = getGlob('./src/languages/translations/**/*.toml');
     let fontTrimConfigMap: Record<string, FontTrimConfig> = translationPaths
         .reduce((obj, translationPath, _translationPathIdx, _arr): Record<string, FontTrimConfig> => {
             let translationName = Path.basename(translationPath, '.toml');

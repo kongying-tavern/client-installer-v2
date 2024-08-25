@@ -1,14 +1,14 @@
-use crate::locale::i18n::Language;
+use crate::languages::lang::SupportedLanguages;
 use yew::prelude::*;
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct GlobalState {
-    pub language: Language,
+    pub language: SupportedLanguages,
 }
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum GlobalStateAction {
-    SetLanguage(Language),
+    SetLanguage(SupportedLanguages),
 }
 
 impl Reducible for GlobalState {
@@ -28,7 +28,7 @@ pub type GlobalStateContext = UseReducerHandle<GlobalState>;
 
 #[derive(Debug, Properties, PartialEq)]
 pub struct GlobalStateProviderProps {
-    pub language: Language,
+    pub language: SupportedLanguages,
     #[prop_or_default]
     pub children: Html,
 }
