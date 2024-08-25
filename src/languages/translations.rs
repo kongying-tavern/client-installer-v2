@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 pub struct Translation {
     pub profile: translation_item::Profile,
     pub header: translation_item::Header,
-    pub page: translation_item::Page,
+    pub menu: translation_item::Menu,
 }
 
 pub mod translation_item {
@@ -23,20 +23,11 @@ pub mod translation_item {
     }
 
     #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-    pub struct Page {
-        pub menu: page::Menu,
-    }
-
-    pub mod page {
-        use serde::{Deserialize, Serialize};
-
-        #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-        pub struct Menu {
-            pub update_title: String,
-            pub update_desc: String,
-            pub uninstall_title: String,
-            pub uninstall_desc: String,
-        }
+    pub struct Menu {
+        pub update_title: String,
+        pub update_desc: String,
+        pub uninstall_title: String,
+        pub uninstall_desc: String,
     }
 }
 
