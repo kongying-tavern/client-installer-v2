@@ -1,9 +1,12 @@
 use crate::languages::lang::SupportedLanguages;
+use crate::languages::translations::{Translatable, Translation};
+use std::rc::Rc;
 use yew::prelude::*;
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct GlobalState {
     pub language: SupportedLanguages,
+    pub translation: Translation,
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -14,10 +17,11 @@ pub enum GlobalStateAction {
 impl Reducible for GlobalState {
     type Action = GlobalStateAction;
 
-    fn reduce(self: std::rc::Rc<Self>, action: Self::Action) -> std::rc::Rc<Self> {
-        GlobalState {
-            language: match action {
-                GlobalStateAction::SetLanguage(lang) => lang,
+    fn reduce(self: Rc<Self>, action: Self::Action) -> Rc<Self> {
+        match action {
+            GlobalStateAction::SetLanguage(lang) => GlobalState {
+                language: lang,
+                translation: lang.to_translations().unwrap(),
             },
         }
         .into()
@@ -37,6 +41,7 @@ pub struct GlobalStateProviderProps {
 pub fn GlobalStateProvider(props: &GlobalStateProviderProps) -> Html {
     let ctx = use_reducer(|| GlobalState {
         language: props.language,
+        translation: props.language.to_translations().unwrap(),
     });
 
     html! {
