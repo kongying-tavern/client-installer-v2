@@ -25,7 +25,7 @@ where
     #[prop_or_default]
     pub style: String,
     #[prop_or_default]
-    pub class: AttrValue,
+    pub class: Classes,
     #[prop_or_default]
     pub list: Vec<T>,
     #[prop_or_default]
