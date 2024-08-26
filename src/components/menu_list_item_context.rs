@@ -16,8 +16,8 @@ pub struct MenuListItemProviderProps {
 
 #[function_component]
 pub fn MenuListItemProvider(props: &MenuListItemProviderProps) -> Html {
-    let ctx = use_state(|| MenuListItemData {
-        item: props.item.clone(),
+    let ctx = use_memo(props.item.clone(), |item| MenuListItemData {
+        item: item.clone(),
     });
 
     html! {
