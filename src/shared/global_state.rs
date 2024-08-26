@@ -3,10 +3,10 @@ use crate::languages::translations::{Translatable, Translation};
 use std::rc::Rc;
 use yew::prelude::*;
 
+/** Global state reducer part */
 #[derive(Debug, Clone, PartialEq)]
 pub struct GlobalState {
     pub language: SupportedLanguages,
-    pub translation: Translation,
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -19,16 +19,28 @@ impl Reducible for GlobalState {
 
     fn reduce(self: Rc<Self>, action: Self::Action) -> Rc<Self> {
         match action {
-            GlobalStateAction::SetLanguage(lang) => GlobalState {
-                language: lang,
-                translation: lang.to_translations().unwrap(),
-            },
+            GlobalStateAction::SetLanguage(lang) => GlobalState { language: lang },
         }
         .into()
     }
 }
 
-pub type GlobalStateContext = UseReducerHandle<GlobalState>;
+pub type GlobalStateReducer = UseReducerHandle<GlobalState>;
+
+/** Global state computed part */
+#[derive(Debug, Clone, PartialEq)]
+pub struct GlobalStateComputed {
+    pub translation: Translation,
+}
+
+pub type GlobalStateMemo = Rc<GlobalStateComputed>;
+
+/** Global state context part */
+#[derive(Debug, Clone, PartialEq)]
+pub struct GlobalStateContext {
+    pub state: GlobalStateReducer,
+    pub computed: GlobalStateMemo,
+}
 
 #[derive(Debug, Properties, PartialEq)]
 pub struct GlobalStateProviderProps {
@@ -39,10 +51,13 @@ pub struct GlobalStateProviderProps {
 
 #[function_component]
 pub fn GlobalStateProvider(props: &GlobalStateProviderProps) -> Html {
-    let ctx = use_reducer(|| GlobalState {
+    let state = use_reducer(|| GlobalState {
         language: props.language,
-        translation: props.language.to_translations().unwrap(),
     });
+    let computed = use_memo(state.language, |lang| GlobalStateComputed {
+        translation: lang.to_translations().unwrap(),
+    });
+    let ctx = GlobalStateContext { state, computed };
 
     html! {
         <ContextProvider<GlobalStateContext> context={ctx}>
