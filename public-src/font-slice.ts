@@ -33,8 +33,8 @@ const readFile = (path: string) => {
 
 const getFontNamesByClass = (className: string) => CLASS_FONT_MAP[className] ?? [];
 
-interface TranslationData {
-    profile: {
+interface ProfileData {
+    theme: {
         font_class: string,
     },
 }
@@ -48,13 +48,15 @@ interface FontTrimConfig {
 
 (async function () {
     // Build font trim config
-    let translationPaths = getGlob('./src/languages/translations/**/*.toml');
-    let fontTrimConfigMap: Record<string, FontTrimConfig> = translationPaths
-        .reduce((obj, translationPath, _translationPathIdx, _arr): Record<string, FontTrimConfig> => {
-            let translationName = Path.basename(translationPath, '.toml');
+    let profilePaths = getGlob('./src/languages/profile/*.toml');
+    let fontTrimConfigMap: Record<string, FontTrimConfig> = profilePaths
+        .reduce((obj, profilePath, _profilePathIdx, _arr): Record<string, FontTrimConfig> => {
+            let profileName = Path.basename(profilePath, '.toml');
+            let profileContent = readFile(profilePath);
+            let profileObj = SmolToml.parse(profileContent) as unknown as ProfileData;
+            let translationPath = Path.resolve(__dirname, `./src/languages/translations/${profileName}.toml`)
             let translationContent = readFile(translationPath);
-            let translationObj = SmolToml.parse(translationContent) as unknown as TranslationData;
-            let fontClass = translationObj['profile']['font_class'];
+            let fontClass = profileObj['theme']['font_class'];
             let fontNames = getFontNamesByClass(fontClass);
 
             if (fontNames.length <= 0) return obj;
@@ -65,14 +67,14 @@ interface FontTrimConfig {
                     fontClass,
                     fontFiles: fontNames,
                     text: translationContent,
-                    supportLangs: [translationName],
+                    supportLangs: [profileName],
                 };
             } else {
                 fontTrimConfig = {
                     fontClass,
                     fontFiles: uniqueArray([...fontTrimConfig.fontFiles, ...fontNames]),
                     text: `${fontTrimConfig.text}${translationContent}`,
-                    supportLangs: [...fontTrimConfig.supportLangs, translationName],
+                    supportLangs: [...fontTrimConfig.supportLangs, profileName],
                 };
             }
             obj[fontClass] = fontTrimConfig;
