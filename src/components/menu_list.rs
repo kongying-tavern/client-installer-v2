@@ -55,6 +55,8 @@ where
                     --c-bg-norm-color: {bg_norm_color};
                     --c-bg-hover-color: {bg_hover_color};
                     --c-bg-active-color: {bg_active_color};
+                    display: flex;
+                    flex-direction: column;
                     {ext_style}
                 ",
                 title_primary_color = props.title_primary_color,
