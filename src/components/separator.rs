@@ -8,6 +8,10 @@ pub struct SeparatorComponentProps {
     pub width: String,
     #[prop_or(".2rem".to_string())]
     pub height: String,
+    #[prop_or_default]
+    pub style: String,
+    #[prop_or_default]
+    pub class: Classes,
 }
 
 #[styled_component(SeparatorComponent)]
@@ -19,16 +23,21 @@ pub fn separator_component(props: &SeparatorComponentProps) -> Html {
                     --c-separator-color: {color};
                     --c-separator-width: {width};
                     --c-separator-height: {height};
+                    {style}
                 ",
                 color = props.color,
                 width = props.width,
                 height = props.height,
+                style = props.style,
             )}
-            class={css!("
-                width: var(--c-separator-width);
-                height: var(--c-separator-height);
-                background-color: var(--c-separator-color);
-            ")}
+            class={classes!(
+                css!("
+                    width: var(--c-separator-width);
+                    height: var(--c-separator-height);
+                    background-color: var(--c-separator-color);
+                "),
+                props.class.clone(),
+            )}
         />
     }
 }
