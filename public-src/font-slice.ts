@@ -46,21 +46,15 @@ const readFile = (path: string): string => {
 
 const getFontNamesByClass = (className: string): string[] => CLASS_FONT_MAP[className] ?? [];
 
-const accumulateTrimConfig = (
+const mergeTrimConfig = (
     obj: Record<string, FontTrimConfig>,
-    profilePath: string,
-    _profilePathIdx: number,
-    _arr: string[]
-): Record<string, FontTrimConfig> => {
-    let profileName = Path.basename(profilePath, '.toml');
-    let profileContent = readFile(profilePath);
-    let profileObj = SmolToml.parse(profileContent) as unknown as ProfileData;
-    let translationPath = Path.resolve(__dirname, `./src/languages/translations/${profileName}.toml`)
-    let translationContent = readFile(translationPath);
-    let fontClass = profileObj['theme']['font_class'];
+    fontClass: string,
+    profileName: string,
+    translationContent: string
+) => {
     let fontNames = getFontNamesByClass(fontClass);
 
-    if (fontNames.length <= 0) return obj;
+    if (fontNames.length <= 0) return;
 
     let fontTrimConfig = obj[fontClass];
     if (!fontTrimConfig) {
@@ -79,7 +73,22 @@ const accumulateTrimConfig = (
         };
     }
     obj[fontClass] = fontTrimConfig;
+};
 
+const accumulateTrimConfig = (
+    obj: Record<string, FontTrimConfig>,
+    profilePath: string,
+    _profilePathIdx: number,
+    _arr: string[]
+): Record<string, FontTrimConfig> => {
+    let profileName = Path.basename(profilePath, '.toml');
+    let profileContent = readFile(profilePath);
+    let profileObj = SmolToml.parse(profileContent) as unknown as ProfileData;
+    let translationPath = Path.resolve(__dirname, `./src/languages/translations/${profileName}.toml`)
+    let translationContent = readFile(translationPath);
+    let fontClass = profileObj['theme']['font_class'];
+
+    mergeTrimConfig(obj, fontClass, profileName, translationContent);
     return obj;
 };
 
