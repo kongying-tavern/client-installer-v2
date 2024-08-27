@@ -1,18 +1,19 @@
 use super::menu::MenuPage;
+use serde::{Deserialize, Serialize};
 use stylist::yew::styled_component;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
-#[derive(Clone, Routable, PartialEq)]
-enum Route {
+#[derive(Debug, Clone, Routable, PartialEq, Serialize, Deserialize)]
+pub enum AppRoute {
     #[not_found]
     #[at("/")]
     Menu,
 }
 
-fn switch(routes: Route) -> Html {
+fn switch(routes: AppRoute) -> Html {
     match routes {
-        Route::Menu => html! { <MenuPage /> },
+        AppRoute::Menu => html! { <MenuPage /> },
     }
 }
 
@@ -26,7 +27,7 @@ pub fn router_view() -> Html {
             z-index: 10;
         ")}>
             <BrowserRouter>
-                <Switch<Route> render={switch} />
+                <Switch<AppRoute> render={switch} />
             </BrowserRouter>
         </div>
     }
