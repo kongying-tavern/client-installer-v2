@@ -1,4 +1,5 @@
 use crate::languages::lang::SupportedLanguages;
+use crate::languages::profile::{AppProfile, Profile};
 use crate::languages::translations::{Translatable, Translation};
 use std::rc::Rc;
 use yew::prelude::*;
@@ -30,6 +31,7 @@ pub type GlobalStateReducer = UseReducerHandle<GlobalState>;
 /** Global state computed part */
 #[derive(Debug, Clone, PartialEq)]
 pub struct GlobalStateComputed {
+    pub profile: Profile,
     pub translation: Translation,
 }
 
@@ -55,6 +57,7 @@ pub fn GlobalStateProvider(props: &GlobalStateProviderProps) -> Html {
         language: props.language,
     });
     let computed = use_memo(state.language, |lang| GlobalStateComputed {
+        profile: lang.to_profile().unwrap(),
         translation: lang.to_translations().unwrap(),
     });
     let ctx = GlobalStateContext { state, computed };

@@ -4,23 +4,11 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Translation {
-    pub profile: translation_item::Profile,
-    pub header: translation_item::Header,
     pub menu: translation_item::Menu,
 }
 
 pub mod translation_item {
     use serde::{Deserialize, Serialize};
-
-    #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-    pub struct Profile {
-        pub font_class: String,
-    }
-
-    #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-    pub struct Header {
-        pub org_logo: String,
-    }
 
     #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
     pub struct Menu {
