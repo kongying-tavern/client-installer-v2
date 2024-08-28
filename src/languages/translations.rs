@@ -12,10 +12,12 @@ pub mod translation_item {
 
     #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
     pub struct Menu {
+        pub page_title: String,
         pub update_title: String,
         pub update_desc: String,
         pub uninstall_title: String,
         pub uninstall_desc: String,
+        pub button_prev: String,
     }
 }
 

@@ -3,6 +3,15 @@
 :root {
     --brand-color: #E84D25;
     --separator-color: #DBDBDB;
+    --title-color: #2F2F2F;
+    --item-title-color: #000000;
+    --item-desc-color: #00000080;
+    --button-plain-text-color: #7B7B7B;
+    --button-plain-bg-color: #FFFFFF;
+    --button-plain-border-color: #D1D1D1;
+    --button-brand-text-color: #FFFFFF;
+    --button-brand-bg-color: var(--brand-color);
+    --button-brand-border-color: var(--brand-color);
     overflow: hidden;
     font-size: 10px;
     user-select: none;

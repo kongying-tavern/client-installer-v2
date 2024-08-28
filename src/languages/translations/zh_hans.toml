@@ -1,5 +1,7 @@
 [menu]
+page_title = "原神地图 安装向导"
 update_title = "更新/修复"
 update_desc = "更新或修复此电脑上的 空荧酒馆™原神地图"
 uninstall_title = "卸载"
 uninstall_desc = "从此电脑上卸载 空荧酒馆™原神地图"
+button_prev = "上一步"
