@@ -1,4 +1,5 @@
 pub mod aside;
+pub mod button;
 pub mod logo;
 pub mod menu_list;
 pub mod menu_list_item;
