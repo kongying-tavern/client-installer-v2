@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "font-slice": "tsx ./public-src/font-slice.ts",
-    "svgo": "svgo -f ./public/ -r"
+    "svgo": "svgo -rf ./public/ && svgo -rf ./src/"
   },
   "keywords": [],
   "author": "",
