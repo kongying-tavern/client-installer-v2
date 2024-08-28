@@ -55,7 +55,7 @@ where
                     --c-bg-norm-color: {bg_norm_color};
                     --c-bg-hover-color: {bg_hover_color};
                     --c-bg-active-color: {bg_active_color};
-                    {ext_style}
+                    {style}
                 ",
                 title_primary_color = props.title_primary_color,
                 title_sub_color = props.title_sub_color,
@@ -63,7 +63,7 @@ where
                 bg_norm_color = props.bg_norm_color,
                 bg_hover_color = props.bg_hover_color,
                 bg_active_color = props.bg_active_color,
-                ext_style = props.style,
+                style = props.style,
             )}
             class={classes!(
                 css!("

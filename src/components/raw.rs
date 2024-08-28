@@ -4,6 +4,7 @@ use yew::virtual_dom::VNode;
 
 #[derive(Debug, Properties, Clone, PartialEq)]
 pub struct RawComponentProps {
+    #[prop_or_default]
     pub html: String,
 }
 

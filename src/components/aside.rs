@@ -3,8 +3,11 @@ use yew::prelude::*;
 
 #[derive(Debug, Properties, Clone, PartialEq)]
 pub struct AsideComponentProps {
+    #[prop_or_default]
     pub color: String,
+    #[prop_or_default]
     pub image: String,
+    #[prop_or_default]
     pub height: String,
 }
 

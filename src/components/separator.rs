@@ -3,6 +3,7 @@ use yew::prelude::*;
 
 #[derive(Debug, Properties, Clone, PartialEq)]
 pub struct SeparatorComponentProps {
+    #[prop_or_default]
     pub color: String,
     #[prop_or("1.6rem".to_string())]
     pub width: String,

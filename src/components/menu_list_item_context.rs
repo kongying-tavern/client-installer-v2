@@ -9,6 +9,7 @@ pub struct MenuListItemData {
 
 #[derive(Debug, Properties, PartialEq)]
 pub struct MenuListItemProviderProps {
+    #[prop_or_default]
     pub item: ItemType,
     #[prop_or_default]
     pub children: Html,

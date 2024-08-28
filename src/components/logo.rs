@@ -4,9 +4,13 @@ use yew::prelude::*;
 
 #[derive(Debug, Properties, Clone, PartialEq)]
 pub struct LogoComponentProps {
+    #[prop_or_default]
     pub text_color: String,
+    #[prop_or_default]
     pub icon_color: String,
+    #[prop_or_default]
     pub height: String,
+    #[prop_or_default]
     pub svg: String,
 }
 
