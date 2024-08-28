@@ -55,8 +55,6 @@ where
                     --c-bg-norm-color: {bg_norm_color};
                     --c-bg-hover-color: {bg_hover_color};
                     --c-bg-active-color: {bg_active_color};
-                    display: flex;
-                    flex-direction: column;
                     {ext_style}
                 ",
                 title_primary_color = props.title_primary_color,
@@ -67,7 +65,14 @@ where
                 bg_active_color = props.bg_active_color,
                 ext_style = props.style,
             )}
-            class={props.class.clone()}>
+            class={classes!(
+                css!("
+                    display: flex;
+                    flex-direction: column;
+                "),
+                props.class.clone(),
+            )}
+        >
             {
                 json_list
                     .iter()
