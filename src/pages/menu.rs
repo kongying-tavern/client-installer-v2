@@ -121,6 +121,8 @@ pub fn menu_page() -> Html {
                 css_padding_left.clone(),
                 css!("
                     display: flex;
+                    min-height: 9rem;
+                    max-height: 9rem;
                     height: 9rem;
                     flex-direction: column;
                     justify-content: flex-end;
