@@ -15,6 +15,14 @@ interface ProfileData {
     },
 }
 
+interface ManifestData {
+    lang: {
+        name: string,
+        code: string,
+        font_class: string,
+    }[],
+}
+
 interface FontTrimConfig {
     fontClass: string,
     fontFiles: string[],
@@ -69,7 +77,7 @@ const mergeTrimConfig = (
             fontClass,
             fontFiles: uniqueArray([...fontTrimConfig.fontFiles, ...fontNames]),
             text: `${fontTrimConfig.text}${translationContent}`,
-            supportLangs: [...fontTrimConfig.supportLangs, profileName],
+            supportLangs: uniqueArray([...fontTrimConfig.supportLangs, profileName]),
         };
     }
     obj[fontClass] = fontTrimConfig;
@@ -89,6 +97,20 @@ const accumulateTrimConfig = (
     let fontClass = profileObj['theme']['font_class'];
 
     mergeTrimConfig(obj, fontClass, profileName, translationContent);
+    return obj;
+};
+
+const addManifestTrimConfig = (
+    obj: Record<string, FontTrimConfig>,
+    manifestPath: string,
+): Record<string, FontTrimConfig> => {
+    let manifestContent = readFile(manifestPath);
+    let manifestObj = SmolToml.parse(manifestContent) as unknown as ManifestData;
+
+    for (let langItem of manifestObj.lang) {
+        mergeTrimConfig(obj, langItem.font_class, langItem.code, langItem.name);
+    }
+
     return obj;
 };
 
@@ -124,10 +146,17 @@ const trimFont = (compressBase: string, config: FontTrimConfig) => {
 };
 
 (async function () {
-    // Build font trim config
-    let profilePaths = getGlob('./src/languages/profile/*.toml');
     let fontTrimConfigMap: Record<string, FontTrimConfig> = {};
+
+    // Merge font trim config from language translations
+    let profilePaths = getGlob('./src/languages/profile/*.toml');
     fontTrimConfigMap = profilePaths.reduce(accumulateTrimConfig, fontTrimConfigMap);
+
+    // Merge font trim config from language manifest
+    let manifestPath = Path.resolve(__dirname, './src/languages/lang/manifest.toml');
+    fontTrimConfigMap = addManifestTrimConfig(fontTrimConfigMap, manifestPath);
+
+    // Convert font trim config map to list
     let fontTrimConfigList: FontTrimConfig[] = Object.values(fontTrimConfigMap);
 
     // Trim font
