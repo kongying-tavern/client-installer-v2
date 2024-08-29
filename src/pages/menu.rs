@@ -28,6 +28,7 @@ fn _option_item() -> Html {
             display: flex;
             flex-direction: row;
             gap: .7rem;
+            align-items: flex-start;
             padding: 1rem 0;
             padding-left: var(--p-padding-left);
             padding-right: var(--p-padding-right);
