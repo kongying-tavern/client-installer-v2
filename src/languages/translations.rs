@@ -29,6 +29,7 @@ impl Translatable for SupportedLanguages {
     fn to_translations(self) -> Result<Translation> {
         let raw = match self {
             SupportedLanguages::ZhHans => include_str!("./translations/zh_hans.toml"),
+            _ => unreachable!("Unsupported language"),
         };
         toml::from_str(raw).context("Failed to parse toml")
     }

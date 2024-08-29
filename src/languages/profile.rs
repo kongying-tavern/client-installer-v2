@@ -26,10 +26,12 @@ impl AppProfile for SupportedLanguages {
     fn to_profile(self) -> Result<Profile> {
         let logo = match self {
             SupportedLanguages::ZhHans => include_str!("./profile/zh_hans.logo.svg"),
+            _ => unreachable!("Unsupported language"),
         };
 
         let raw = match self {
             SupportedLanguages::ZhHans => include_str!("./profile/zh_hans.toml"),
+            _ => unreachable!("Unsupported language"),
         };
         let parsed = toml::from_str(raw).context("Failed to parse toml");
 
