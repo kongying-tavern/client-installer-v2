@@ -173,6 +173,7 @@ pub fn menu_page() -> Html {
                     border_color="var(--p-button-plain-border-color)"
                     class={classes!(
                         p.theme.font_class.clone(),
+                        "font-bold",
                         css!("
                             font-size: 1.4rem;
                             line-height: 1.8rem;
