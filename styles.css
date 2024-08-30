@@ -1,6 +1,7 @@
 @import '/public/fonts.css';
 
 :root {
+    --bg-color: #FFFFFF;
     --brand-color: #E84D25;
     --separator-color: #DBDBDB;
     --title-color: #2F2F2F;
@@ -29,7 +30,7 @@ body {
     position: absolute;
     inset: 0;
     border-radius: 1rem;
-    background-color: #fff;
+    background-color: var(--bg-color);
     width: 100vw;
     height: 100vh;
     overflow: hidden;
@@ -37,4 +38,40 @@ body {
     background-position: right top;
     background-repeat: no-repeat;
     background-size: 67.33vh 22.28vh;
+}
+
+.styled-scrollbar {
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+        width: 1.8rem;
+        height: 1.8rem;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-button,
+    &::-webkit-scrollbar-corner,
+    &::-webkit-resizer {
+        display: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: color-mix(in hsl, var(--bg-color) 50%, #888 50%);
+        border: .4rem solid var(--bg-color);
+        border-radius: .75rem;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: color-mix(in hsl, var(--bg-color) 25%, #888 75%);
+    }
+    &::-webkit-scrollbar-thumb:active {
+        background-color: color-mix(in hsl, var(--bg-color) 40%, #888 60%);
+    }
+    &::-webkit-scrollbar-thumb:horizontal {
+        border-left: none;
+        border-right: none;
+    }
+    &::-webkit-scrollbar-thumb:vertical {
+        border-top: none;
+        border-bottom: none;
+    }
 }
