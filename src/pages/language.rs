@@ -3,9 +3,11 @@ use crate::components::{
     menu_list_item_context::MenuListItemData, separator::SeparatorComponent,
 };
 use crate::languages::lang::language_item;
-use crate::shared::global_state::GlobalStateContext;
+use crate::pages::router::AppRoute;
+use crate::shared::global_state::{GlobalStateAction, GlobalStateContext};
 use stylist::yew::styled_component;
 use yew::prelude::*;
+use yew_router::hooks::use_navigator;
 
 type OptionData = language_item::Lang;
 
@@ -37,6 +39,7 @@ pub fn language_page() -> Html {
     let p = global_state.computed.profile.to_owned();
     let t = global_state.computed.translation.to_owned();
     let langs = global_state.constant.langs.lang.to_owned();
+    let navigator = use_navigator().unwrap();
 
     let css_margin_left = css!("margin-left: var(--p-padding-left);");
     let css_padding_left = css!("padding-left: var(--p-padding-left);");
@@ -135,6 +138,7 @@ pub fn language_page() -> Html {
                             line-height: 1.8rem;
                         "),
                     )}
+                    handle_click={move |_| navigator.push(&AppRoute::Menu)}
                 >
                     {t.language.button_next.clone()}
                 </ButtonComponent>
