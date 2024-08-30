@@ -1,4 +1,4 @@
-use super::menu::MenuPage;
+use super::{language::LanguagePage, menu::MenuPage};
 use serde::{Deserialize, Serialize};
 use stylist::yew::styled_component;
 use yew::prelude::*;
@@ -6,13 +6,15 @@ use yew_router::prelude::*;
 
 #[derive(Debug, Clone, Routable, PartialEq, Serialize, Deserialize)]
 pub enum AppRoute {
-    #[not_found]
-    #[at("/")]
+    #[at("/language")]
+    Language,
+    #[at("/menu")]
     Menu,
 }
 
 fn switch(routes: AppRoute) -> Html {
     match routes {
+        AppRoute::Language => html! { <LanguagePage /> },
         AppRoute::Menu => html! { <MenuPage /> },
     }
 }
