@@ -1,6 +1,7 @@
 #[derive(Debug, Clone, PartialEq)]
 pub struct LanguageID {
     pub id: u16,
+    pub code: String,
     pub primary: String,
     pub sub: String,
 }
@@ -326,8 +327,9 @@ pub fn get_sys_language() -> LanguageID {
     let (lang_primary, lang_sub) = lang_code.split_once('-').unwrap_or((lang_code, ""));
     LanguageID {
         id: lang_id,
-        primary: String::from(lang_primary),
-        sub: String::from(lang_sub),
+        code: lang_code.to_string(),
+        primary: lang_primary.to_string(),
+        sub: lang_sub.to_string(),
     }
 }
 
