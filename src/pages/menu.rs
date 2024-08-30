@@ -7,6 +7,7 @@ use crate::shared::global_state::GlobalStateContext;
 use serde::{Deserialize, Serialize};
 use stylist::yew::styled_component;
 use yew::prelude::*;
+use yew_router::hooks::use_navigator;
 
 #[derive(Debug, Clone, Properties, PartialEq, Serialize, Deserialize)]
 struct OptionData {
@@ -76,6 +77,7 @@ pub fn menu_page() -> Html {
     let global_state = use_context::<GlobalStateContext>().expect("Global state not found");
     let p = global_state.computed.profile.to_owned();
     let t = global_state.computed.translation.to_owned();
+    let navigator = use_navigator().unwrap();
 
     let option_list: Vec<OptionData> = vec![
         OptionData {
@@ -179,6 +181,7 @@ pub fn menu_page() -> Html {
                             line-height: 1.8rem;
                         "),
                     )}
+                    handle_click={move |_| navigator.push(&AppRoute::Language)}
                 >
                     {t.menu.button_prev.clone()}
                 </ButtonComponent>
