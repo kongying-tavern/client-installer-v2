@@ -13,22 +13,56 @@ type OptionData = language_item::Lang;
 
 #[styled_component(OptionItem)]
 fn _option_item() -> Html {
+    let global_state = use_context::<GlobalStateContext>().expect("Global state not found");
     let ctx = use_context::<MenuListItemData>().expect("Cannot get list item data");
     let opt: OptionData = serde_json::from_value(ctx.item).unwrap();
+    let is_active = global_state.state.language == opt.lang;
 
     html! {
         <div class={classes!(
             opt.font_class.clone(),
             css!("
+                display: flex;
+                flex-direction: row;
+                gap: .8rem;
+                align-items: flex-start;
                 padding: 1rem 0;
                 padding-left: var(--p-padding-left);
                 padding-right: var(--p-padding-right);
                 cursor: pointer;
-                font-size: 1.6rem;
-                line-height: 2rem;
             "),
+            {
+                match is_active {
+                    true => classes!(
+                        "font-bold",
+                        css!("background-color: var(--c-bg-active-color);"),
+                    ),
+                    false => classes!(),
+                }
+            }
         )}>
-            {opt.name}
+            <span class={css!("
+                font-size: 1.6rem;
+                line-height: 2.2rem;
+                color: var(--p-item-title-color);
+            ")}>
+                {opt.name}
+            </span>
+            <span class={{
+                match is_active {
+                    true => css!("
+                        display: inline-block;
+                        width: 2rem;
+                        height: 2rem;
+                        background-color: var(--p-brand-color);
+                        mask-image: url(/public/imgs/tick.svg);
+                        mask-position: center;
+                        mask-size: contain;
+                        mask-repeat: no-repeat;
+                    "),
+                    false => css!(),
+                }
+            }} />
         </div>
     }
 }
@@ -62,9 +96,6 @@ pub fn language_page() -> Html {
             --p-button-plain-text-color: var(--button-plain-text-color);
             --p-button-plain-bg-color: var(--button-plain-bg-color);
             --p-button-plain-border-color: var(--button-plain-border-color);
-            --p-button-brand-text-color: var(--button-brand-text-color);
-            --p-button-brand-bg-color: var(--button-brand-bg-color);
-            --p-button-brand-border-color: var(--button-brand-border-color);
             position: absolute;
             inset: 0;
             display: flex;
