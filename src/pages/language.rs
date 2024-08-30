@@ -105,7 +105,6 @@ pub fn language_page() -> Html {
                 {t.language.page_title.clone()}
             </div>
             <MenuListComponent<OptionData>
-                list={langs}
                 class={classes!(
                     "styled-scrollbar",
                     css!("
@@ -116,6 +115,11 @@ pub fn language_page() -> Html {
                         overflow-y: auto;
                     "),
                 )}
+                list={langs}
+                handle_item_click={move |opt: serde_json::Value| {
+                    let data :OptionData = serde_json::from_value(opt).expect("Cannot parse item data");
+                    global_state.state.dispatch(GlobalStateAction::SetLanguage(data.lang.clone()));
+                }}
             >
                 <OptionItem />
             </MenuListComponent<OptionData>>

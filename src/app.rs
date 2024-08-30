@@ -7,7 +7,7 @@ use yew::prelude::*;
 #[function_component(App)]
 pub fn app() -> Html {
     html! {
-        <GlobalStateProvider language={SupportedLanguages::ZhHans}>
+        <GlobalStateProvider language={SupportedLanguages::EnUs}>
             <main class="container">
                 <TitlebarComponent />
                 <AsideComponent
