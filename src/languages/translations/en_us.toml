@@ -1,0 +1,11 @@
+[language]
+page_title = "Select Language"
+button_next = "Next"
+
+[menu]
+page_title = "Genshin Map Installation Wizard"
+update_title = "Update / Repair"
+update_desc = "Update or repair Kongying Tavern™ Genshin Map"
+uninstall_title = "Uninstall"
+uninstall_desc = "Remove Kongying Tavern™ Genshin Map"
+button_prev = "Previous"

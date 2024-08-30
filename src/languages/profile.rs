@@ -25,11 +25,13 @@ pub trait AppProfile {
 impl AppProfile for SupportedLanguages {
     fn to_profile(self) -> Result<Profile> {
         let logo = match self {
+            SupportedLanguages::EnUs => include_str!("./profile/en_us.logo.svg"),
             SupportedLanguages::ZhHans => include_str!("./profile/zh_hans.logo.svg"),
             _ => unreachable!("Unsupported language"),
         };
 
         let raw = match self {
+            SupportedLanguages::EnUs => include_str!("./profile/en_us.toml"),
             SupportedLanguages::ZhHans => include_str!("./profile/zh_hans.toml"),
             _ => unreachable!("Unsupported language"),
         };

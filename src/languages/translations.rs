@@ -35,6 +35,7 @@ pub trait Translatable {
 impl Translatable for SupportedLanguages {
     fn to_translations(self) -> Result<Translation> {
         let raw = match self {
+            SupportedLanguages::EnUs => include_str!("./translations/en_us.toml"),
             SupportedLanguages::ZhHans => include_str!("./translations/zh_hans.toml"),
             _ => unreachable!("Unsupported language"),
         };

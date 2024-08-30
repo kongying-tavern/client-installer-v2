@@ -2,3 +2,8 @@
 name = "简体中文"
 code = "zh_hans"
 font_class = "font-misans"
+
+[[lang]]
+name = "English"
+code = "en_us"
+font_class = "font-misans-latin"

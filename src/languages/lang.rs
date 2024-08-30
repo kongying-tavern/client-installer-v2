@@ -5,6 +5,7 @@ use serde::{Deserialize, Serialize};
 #[serde(rename_all = "snake_case")]
 pub enum SupportedLanguages {
     Undefined,
+    EnUs,
     ZhHans,
 }
 
@@ -48,6 +49,7 @@ impl LanguageManifest for Language {
                 .into_iter()
                 .map(move |mut l: language_item::Lang| {
                     l.lang = match l.code.as_str() {
+                        "en_us" => SupportedLanguages::EnUs,
                         "zh_hans" => SupportedLanguages::ZhHans,
                         _ => unreachable!("Unsupported language code"),
                     };
