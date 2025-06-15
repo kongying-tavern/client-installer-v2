@@ -114,7 +114,7 @@ const addManifestTrimConfig = (
     return obj;
 };
 
-const trimFont = (compressBase: string, config: FontTrimConfig) => {
+const trimFont = async (compressBase: string, config: FontTrimConfig) => {
     const trimFontFiles: string[] = config.fontFiles ?? [];
     const trimText: string = config.text ?? '';
     const trimTextFull: string = `${trimText}${STATIC_CHAR_LIST.join('')}`;
@@ -126,21 +126,22 @@ const trimFont = (compressBase: string, config: FontTrimConfig) => {
             const fontName: string = Path.basename(fontPath, '.ttf');
             const fontCompressedName: string = `${fontName}-compressed.woff2`;
 
-            new FontMin.default()
-                .src(fontPath)
-                .dest(compressBase)
-                .use(FontMin.default.glyph({
-                    text: trimTextFull,
-                }))
-                .use(FontMin.default.ttf2woff2())
-                .use(GulpRename(fontCompressedName))
-                .run((e?: Error) => {
-                    if (e) {
-                        console.error(e.message);
-                    }
-                    console.log(`○ Sliced font: ${fontName}.ttf → ${fontCompressedName}`);
-                    console.log(`→   Supported langs: ${trimSupportLangs.join(' ')}`);
-                });
+            try {
+                await new FontMin()
+                    .src(fontPath)
+                    .dest(compressBase)
+                    .use(FontMin.glyph({
+                        text: trimTextFull,
+                    }))
+                    .use(FontMin.ttf2woff2())
+                    .use(GulpRename(fontCompressedName))
+                    .runAsync();
+
+                console.log(`○ Sliced font: ${fontName}.ttf → ${fontCompressedName}`);
+                console.log(`→   Supported langs: ${trimSupportLangs.join(' ')}`);
+            } catch (e: unknown) {
+                if (e) console.error((e as Error).message);
+            }
         }
     }
 };
@@ -162,6 +163,6 @@ const trimFont = (compressBase: string, config: FontTrimConfig) => {
     // Trim font
     let fontTargetBase: string = Path.resolve(__dirname, './public/fonts/');
     for (let trimConfig of fontTrimConfigList) {
-        trimFont(fontTargetBase, trimConfig);
+        await trimFont(fontTargetBase, trimConfig);
     }
 })();
