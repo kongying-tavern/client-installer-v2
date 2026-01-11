@@ -6,7 +6,7 @@ ignore = ["./src-tauri"]
 
 [serve]
 addresses = [
-    "127.0.0.1",
+    "127.0.0.1"
 ]
-port = 31420
+port = 27420
 open = false

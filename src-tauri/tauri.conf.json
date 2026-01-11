@@ -3,7 +3,7 @@
     "beforeDevCommand": "pnpm run font-slice && trunk serve",
     "beforeBuildCommand": "pnpm run font-slice && trunk build",
     "frontendDist": "../dist",
-    "devUrl": "http://localhost:31420"
+    "devUrl": "http://127.0.0.1:27420"
   },
   "bundle": {
     "active": false
